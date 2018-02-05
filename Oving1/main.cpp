@@ -1,10 +1,14 @@
 #include <iostream>
 #include <thread>
 #include <vector>
+#include "test.cpp"
+
 
 using namespace std;
 int toCheck = 0;    //the number the worker is getting
 vector<int> primes; //list of prime numbers
+
+bool testIsSorted(vector<int> primes); //To run tests
 
 //giving the worker a number to check
 //skipping the even numbers
@@ -66,9 +70,11 @@ void finnPrim(int start, int end, int num_threads){
 int main() {
   int start   = 0;    //the start number
   int end     = 100;  //the end number
-  int threads = 2;    //the about of threads
+  int threads = 10;    //the about of threads
   finnPrim(start, end, threads);
   for(size_t i = 0; i < primes.size(); i++){
     cout << primes[i] << endl;  //printing the primes
   }
+  string res = (testIsSorted(primes) == 1) ? "true":"false";
+  cout << "Test was " << res << endl;
 }
