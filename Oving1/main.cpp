@@ -1,12 +1,12 @@
 #include <iostream>
 #include <thread>
 #include <vector>
-#include "test.cpp"
+#include "test.cpp"  //should use header file, but small project.
 
 
 using namespace std;
 int toCheck = 0;    //the number the worker is getting
-vector<int> primes; //list of prime numbers
+vector<int> primes; //the list of prime numbers
 
 bool testIsSorted(vector<int> primes); //To run tests
 
@@ -19,7 +19,7 @@ int get_next_number(){
 }
 
 //Checking if a given number is a prime number
-//the higher the number the longer it takes
+//the higher the number the longer it takes.
 bool isPrim(int n){
   if (n <= 1) return false;
   else if (n <= 3) return true;
@@ -33,7 +33,7 @@ bool isPrim(int n){
 }
 
 //the work each thread is given
-//getting a number, checking it, and apends if true
+//getting a number, checking it, and apends if true.
 void worker(int end){
   while(true){
     int num = get_next_number();
@@ -42,7 +42,7 @@ void worker(int end){
   }
 }
 
-//setup start and init threads
+//setup start, and init threads.
 void finnPrim(int start, int end, int num_threads){
   if (start <= 2){ //checking and setting start
     start = 3;
@@ -52,7 +52,8 @@ void finnPrim(int start, int end, int num_threads){
   //all even numbers can be devided by 2
   else if (start % 2 == 0 ) start +=1;
   
-  toCheck = start; //setting the first number
+  //setting the first number a worker/thread should check.
+  toCheck = start; 
   
   vector<thread> threads; //list of threads
   for(int i = 0; i < num_threads; i++) {
@@ -61,7 +62,7 @@ void finnPrim(int start, int end, int num_threads){
     });
   }
   for(auto &thread : threads){
-    thread.join(); //autobot roll out
+    thread.join();  //Gather here my minnions!
   }
 };
 
@@ -75,6 +76,7 @@ int main() {
   for(size_t i = 0; i < primes.size(); i++){
     cout << primes[i] << endl;  //printing the primes
   }
+  //running a quick test to check if it's sorted and no duplicates. 
   string res = (testIsSorted(primes) == 1) ? "true":"false";
   cout << "Test was " << res << endl;
 }
