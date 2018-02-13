@@ -1,11 +1,12 @@
+#include "prim.hpp"
+#include "test.cpp"  //should use header file, but small project.
 #include <iostream>
 #include <thread>
 #include <vector>
-#include "test.cpp"  //should use header file, but small project.
-
+#include <atomic>
 
 using namespace std;
-int toCheck = 0;    //the number the worker is getting
+atomic<int> toCheck;    //the number the worker is getting
 vector<int> primes; //the list of prime numbers
 
 bool testIsSorted(vector<int> primes); //To run tests
@@ -16,20 +17,6 @@ int get_next_number(){
   int number = toCheck;
   toCheck += 2;
   return number;
-}
-
-//Checking if a given number is a prime number
-//the higher the number the longer it takes.
-bool isPrim(int n){
-  if (n <= 1) return false;
-  else if (n <= 3) return true;
-  else if (n % 2 == 0 || n % 3 == 0) return false;
-  int i = 5;
-  while(i * i <= n){
-    if(n % i == 0 || n % (i + 2) == 0) return false;
-    i++;
-  }
-  return true;
 }
 
 //the work each thread is given
@@ -71,12 +58,12 @@ void finnPrim(int start, int end, int num_threads){
 int main() {
   int start   = 0;    //the start number
   int end     = 100;  //the end number
-  int threads = 10;    //the amount of threads
+  int threads = 4;    //the amount of threads
   finnPrim(start, end, threads);
   for(size_t i = 0; i < primes.size(); i++){
-    cout << primes[i] << endl;  //printing the primes
+    cout << primes[i]<< endl;  //printing the primes
   }
   //running a quick test to check if it's sorted and no duplicates. 
-  string res = (testIsSorted(primes) == 1) ? "true":"false";
+  string res = (testIsSorted(primes)) ? "true":"false";
   cout << "Test was " << res << endl;
 }
