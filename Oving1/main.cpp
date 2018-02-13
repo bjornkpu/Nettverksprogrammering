@@ -3,11 +3,13 @@
 #include <iostream>
 #include <thread>
 #include <vector>
+#include <mutex>
 #include <atomic>
 
 using namespace std;
 atomic<int> toCheck;    //the number the worker is getting
 vector<int> primes; //the list of prime numbers
+mutex primeLock;
 
 bool testIsSorted(vector<int> primes); //To run tests
 
@@ -25,7 +27,11 @@ void worker(int end){
   while(true){
     int num = get_next_number();
     if (num > end ) break;
-    if (isPrim(num) == 1) primes.emplace_back(num);
+    if (isPrim(num) == 1) {
+      primeLock.lock();  //Locking the vector to prevent crashing
+      primes.emplace_back(num);  //places the number in the vector
+      primeLock.unlock();  //unlocks the vector again
+    }
   }
 }
 
@@ -53,8 +59,6 @@ void finnPrim(int start, int end, int num_threads){
   }
 };
 
-//if Exit code: 139, run again.
-//-this is a segmentation fault or "seg fault".
 int main() {
   int start   = 0;    //the start number
   int end     = 100;  //the end number
