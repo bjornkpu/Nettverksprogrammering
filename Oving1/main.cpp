@@ -1,5 +1,5 @@
 #include "prim.hpp"
-#include "test.cpp"  //should use header file, but small project.
+#include "tests/test.cpp"  //should use header file, but small project.
 #include <iostream>
 #include <thread>
 #include <vector>
