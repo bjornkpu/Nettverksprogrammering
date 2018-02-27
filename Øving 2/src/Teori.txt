@@ -1,3 +1,4 @@
+Oppgaveteks:
 a)  Du har forhåpentligvis funnet at klassen Register må være subklasse til UnicastRemoteObject. Hva må du gjøre med klassen Utstyr? Begrunn svaret.
 
 b)  Anta at følgende tre metoder skal legges inn i klassen Register:
@@ -14,6 +15,9 @@ Gjør rede for hvorfor, eventuelt hvorfor ikke, de ulike alternativene kan bruke
 c)  Hvorfor er det viktig at metodene i klassen Register er synkronisert? Klassen ArrayList som brukes her, er imidlertid ikke synkronisert/trådsikker.
     Bruk API-dokumentasjonen til å finne et alternativ (slå opp på ArrayList). Er det nødvendig å bruke et synkronisert alternativ til ArrayList? Begrunn svaret.
 
+
+SVAR:
+
 a)
 
 Absolutt ingenting. Vi har RegistrerImpl.java som subklasse til UnicastRemoteObject.
@@ -24,4 +28,14 @@ i klassen RegistrerImpl.java extender vi UnicastRemoteObject i klassehodet.
     }
 
 b)
-1.  Ingen endring.
+
+1.  Ingen endring. siden den er i samme klasse. Du lagrer utsyr i registerarrayet i registerklassen
+
+2.  Her brukes serialisering til å sende data til utstyrsklassen i samme virituell java-maskin
+
+3.  Klassen må både serialiseres og gjøres til fjernobjekt. Slik at du kan bruke en klient over nettet til å bruke registrer klassen.
+
+
+c)
+
+Om flere klienter skal jobbe opp mot tjeneren samtidig kan det skje feil om de gjør kall samtidig og eventuellt overskriver hverandre.

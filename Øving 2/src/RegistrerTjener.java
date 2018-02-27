@@ -12,7 +12,7 @@ class RegistrerTjener {
         register.regNyttUtstyr(1,"Kniv","BestikkAS", 80, 10);
         register.regNyttUtstyr(2,"Skje","BestikkAS", 60, 10);
         register.regNyttUtstyr(3,"Gaffel","BestikkAS", 40, 10);
-        register.regNyttUtstyr(4,"Porselensfat","ServiseAS", 20, 10);
+        register.regNyttUtstyr(4,"talerken","ServiseAS", 20, 10);
         register.regNyttUtstyr(5,"Glass","ServiseAS", 20, 10);
 
 
