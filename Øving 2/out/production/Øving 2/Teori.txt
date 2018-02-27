@@ -1,5 +1,12 @@
 a)  Du har forhåpentligvis funnet at klassen Register må være subklasse til UnicastRemoteObject. Hva må du gjøre med klassen Utstyr? Begrunn svaret.
 
+        Absolutt ingenting. Vi har RegistrerImpl.java som subklasse til UnicastRemoteObject.
+        i klassen RegistrerImpl.java extender vi UnicastRemoteObject i klassehodet.
+
+        class RegistrerImpl extends UnicastRemoteObject implements Registrer {
+            ...
+        }
+
 b)  Anta at følgende tre metoder skal legges inn i klassen Register:
     1.  int finnAntallRegistrert() throws RemoteException;
     2.  Utstyr finnUtstyr(int indeks) throws RemoteException;
@@ -13,15 +20,3 @@ Hvilke konsekvenser, om noen, får dette for klassen Utstyr? Gå gjennom de aktu
 Gjør rede for hvorfor, eventuelt hvorfor ikke, de ulike alternativene kan brukes
 c)  Hvorfor er det viktig at metodene i klassen Register er synkronisert? Klassen ArrayList som brukes her, er imidlertid ikke synkronisert/trådsikker.
     Bruk API-dokumentasjonen til å finne et alternativ (slå opp på ArrayList). Er det nødvendig å bruke et synkronisert alternativ til ArrayList? Begrunn svaret.
-
-a)
-
-Absolutt ingenting. Vi har RegistrerImpl.java som subklasse til UnicastRemoteObject.
-i klassen RegistrerImpl.java extender vi UnicastRemoteObject i klassehodet.
-
-    class RegistrerImpl extends UnicastRemoteObject implements Registrer {
-        ...
-    }
-
-b)
-1.  Ingen endring.
