@@ -37,7 +37,7 @@ class RegistrerImpl extends UnicastRemoteObject implements Registrer {
         }
     }
 
-    private synchronized  int finnUtstyrindeks(int nr) throws RemoteException {
+    private  int finnUtstyrindeks(int nr) {
         for (int i = 0; i < registeret.size(); i++) {
             int funnetNr = (registeret.get(i)).finnNr();
             if (funnetNr == nr) return i;
