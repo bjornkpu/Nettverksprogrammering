@@ -16,7 +16,6 @@ public class SocketClient {
 
         try {
             Socket s = new Socket(ip, PORT);
-            System.out.println("Tilkoblet");
 
             InputStreamReader isr = new InputStreamReader(s.getInputStream());
             BufferedReader br = new BufferedReader(isr);

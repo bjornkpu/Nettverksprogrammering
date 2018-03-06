@@ -38,6 +38,13 @@ public class ThreadClientManager extends Thread {
             }
             br.close();
             pr.close();
-        } catch (IOException e) { e.printStackTrace(); }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        finally{
+            try{
+                socket.close();
+            } catch(Exception e){ e.printStackTrace(); }
+        }
     }
 }
